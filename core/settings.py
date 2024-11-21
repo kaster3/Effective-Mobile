@@ -1,12 +1,12 @@
 from typing import Literal
 
-from pydantic import BaseModel, PostgresDsn
+from pydantic import BaseModel, PostgresDsn, RedisDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
-    endpoint: str = "/endpoint"
+    books: str = "/books"
 
 
 class ApiPrefix(BaseModel):
@@ -56,6 +56,13 @@ class GunicornConfig(BaseModel):
     timeout: int
 
 
+class RedisConfig(BaseModel):
+    url: RedisDsn
+    host: str
+    port: int
+    db: int
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=(".template.env", ".env"),
@@ -67,6 +74,7 @@ class Settings(BaseSettings):
     gunicorn: GunicornConfig
     db: DataBase
     logging: LoggingConfig
+    redis: RedisConfig
     api: ApiPrefix = ApiPrefix()
 
 
