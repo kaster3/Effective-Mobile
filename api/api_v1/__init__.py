@@ -2,13 +2,13 @@ from fastapi import APIRouter
 
 from core import settings
 
-from .some_endpoint import router as endpoint
+from .books.handlers import router as book_router
 
 router = APIRouter(
     prefix=settings.api.v1.prefix,
 )
 
-for rout in (endpoint,):
+for rout in (book_router,):
     router.include_router(
         router=rout,
     )
