@@ -1,9 +1,8 @@
 services:
-  pharmacy_catalog_db_test:
+  book_db_test:
     image: postgres:16.2
-    container_name: pharmacy_catalog_db_test
+    container_name: book_db_test
     restart: always
-    shm_size: 128mb
     env_file:
       - .env.docker
 #    environment:
@@ -13,9 +12,9 @@ services:
     ports:
       - "5435:5432"
     volumes:
-      - pharmacy_catalog_db_test:/var/lib/postgresql/data
+      - book_db_test:/var/lib/postgresql/data
 
 volumes:
-  pharmacy_catalog_db_test:
+  book_db_test:
     driver: local
 
