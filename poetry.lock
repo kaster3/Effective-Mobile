@@ -1125,6 +1125,20 @@ anyio = ">=3.4.0,<5"
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
 
 [[package]]
+name = "syrupy"
+version = "4.7.2"
+description = "Pytest Snapshot Test Utility"
+optional = false
+python-versions = ">=3.8.1"
+files = [
+    {file = "syrupy-4.7.2-py3-none-any.whl", hash = "sha256:eae7ba6be5aed190237caa93be288e97ca1eec5ca58760e4818972a10c4acc64"},
+    {file = "syrupy-4.7.2.tar.gz", hash = "sha256:ea45e099f242de1bb53018c238f408a5bb6c82007bc687aefcbeaa0e1c2e935a"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0,<9.0.0"
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1407,4 +1421,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7a1ab7c0fadffc3a0c592409bda8737d2af0d58a4162cad6856843dbcc3e8809"
+content-hash = "2e9a0586a4332f57e888d0ae917b98c0db882a6f280a426729352f65316fe379"
