@@ -21,4 +21,3 @@ class Base(DeclarativeBase):
     @declared_attr.directive
     def __tablename__(cls) -> str:
         return f"{pluralize(camel_case_to_snake_case(cls.__name__))}"
-

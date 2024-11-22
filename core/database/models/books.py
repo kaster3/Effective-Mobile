@@ -19,7 +19,6 @@ class Book(Base, IntIdPkMixin):
     year: Mapped[int] = mapped_column(Integer)
     status: Mapped[BookStatus] = mapped_column(SQLEnum(BookStatus))
 
-
     def to_dict(self):
         return {
             "id": self.id,

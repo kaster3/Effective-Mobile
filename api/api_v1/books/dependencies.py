@@ -1,5 +1,3 @@
-from typing import Annotated
-
 from fastapi import Depends
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -22,9 +20,7 @@ async def get_book_repository(
 
 
 async def get_redis_connection(settings: Settings) -> Redis:
-    return await Redis(
-        host=settings.redis.host, port=settings.redis.port, db=settings.redis.db
-    )
+    return await Redis(host=settings.redis.host, port=settings.redis.port, db=settings.redis.db)
 
 
 async def get_cache_repository() -> CacheRepository:

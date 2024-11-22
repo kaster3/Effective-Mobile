@@ -43,7 +43,6 @@ async def db_session(db_helper: DataBaseHelper) -> AsyncSession:
         yield session
 
 
-
 @pytest_asyncio.fixture()
 async def book_repository(db_session: AsyncSession) -> BookRepository:
     return BookRepository(session=db_session)

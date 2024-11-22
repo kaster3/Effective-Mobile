@@ -1,16 +1,16 @@
 """create table books
 
 Revision ID: 01720b4dcac9
-Revises: 
+Revises:
 Create Date: 2024-11-20 22:05:59.687878
 
 """
 
 from typing import Sequence, Union
 
-from alembic import op
 import sqlalchemy as sa
 
+from alembic import op
 
 revision: str = "01720b4dcac9"
 down_revision: Union[str, None] = None

@@ -1,20 +1,20 @@
-import pytest
-from unittest.mock import patch, MagicMock
-from redis.asyncio import Redis
+from unittest.mock import MagicMock, patch
 
+import pytest
+from redis.asyncio import Redis
 from syrupy import snapshot
 
-from core.settings import Settings, RedisConfig
 from api.api_v1.books.dependencies import (
     get_book_repository,
     get_book_service,
-    get_redis_connection,
     get_cache_repository,
+    get_redis_connection,
     get_settings,
 )
 from api.api_v1.books.repository.books import BookRepository
 from api.api_v1.books.repository.cache_books import CacheRepository
 from api.api_v1.books.service import BookService
+from core.settings import RedisConfig, Settings
 
 
 @pytest.mark.asyncio
@@ -38,7 +38,6 @@ async def test_get_book_service(book_repository: BookRepository):
     assert isinstance(book_service, BookService)
 
 
-
 @pytest.mark.asyncio
 async def test_get_redis_connection():
     mock_redis_config = MagicMock(spec=RedisConfig)
@@ -49,7 +48,6 @@ async def test_get_redis_connection():
 
     mock_settings_instance = MagicMock(spec=Settings)
     mock_settings_instance.redis = mock_redis_config
-
 
     with patch("core.settings.settings", new=mock_settings_instance):
         redis_connection = await get_redis_connection(settings=mock_settings_instance)
