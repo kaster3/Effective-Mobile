@@ -22,9 +22,3 @@ class Base(DeclarativeBase):
     def __tablename__(cls) -> str:
         return f"{pluralize(camel_case_to_snake_case(cls.__name__))}"
 
-    # foo: Mapped[int]
-    # bar: Mapped[int]
-    #
-    # __table_args__ = (
-    #     UniqueConstraint("foo", "bar"),
-    # )
