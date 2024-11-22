@@ -1,0 +1,91 @@
+# serializer version: 1
+# name: test_create_book
+  dict({
+    'author': 'Test author 1',
+    'id': 1,
+    'status': 'В наличие',
+    'title': 'Test title 1',
+    'year': 1000,
+  })
+# ---
+# name: test_create_book.1
+  dict({
+    'author': 'Test author 1',
+    'id': 2,
+    'status': 'Выдана',
+    'title': 'Test title 2',
+    'year': 1000,
+  })
+# ---
+# name: test_get_all_books
+  list([
+    dict({
+      'author': 'Test author 1',
+      'id': 1,
+      'status': 'В наличие',
+      'title': 'Test title 1',
+      'year': 1000,
+    }),
+    dict({
+      'author': 'Test author 2',
+      'id': 2,
+      'status': 'Выдана',
+      'title': 'Test title 2',
+      'year': 1000,
+    }),
+  ])
+# ---
+# name: test_get_book_by_id
+  dict({
+    'author': 'Test author 1',
+    'id': 1,
+    'status': 'В наличие',
+    'title': 'Test title 1',
+    'year': 1000,
+  })
+# ---
+# name: test_get_book_by_id.1
+  dict({
+    'author': 'Test author 2',
+    'id': 2,
+    'status': 'Выдана',
+    'title': 'Test title 2',
+    'year': 1000,
+  })
+# ---
+# name: test_get_book_by_title
+  dict({
+    'author': 'Test author 1',
+    'id': 1,
+    'status': 'В наличие',
+    'title': 'Test title 1',
+    'year': 1000,
+  })
+# ---
+# name: test_get_book_by_title.1
+  dict({
+    'author': 'Test author 2',
+    'id': 2,
+    'status': 'Выдана',
+    'title': 'Test title 2',
+    'year': 1000,
+  })
+# ---
+# name: test_update_book
+  dict({
+    'author': 'Test author 1',
+    'id': 1,
+    'status': 'В наличие',
+    'title': 'Test title 1',
+    'year': 1000,
+  })
+# ---
+# name: test_update_book.1
+  dict({
+    'author': 'Updated author',
+    'id': 1,
+    'status': 'Выдана',
+    'title': 'Updated title',
+    'year': 2000,
+  })
+# ---
