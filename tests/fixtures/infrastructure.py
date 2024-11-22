@@ -3,6 +3,7 @@ import logging
 import pytest_asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.api_v1.books.repository.books import BookRepository
 from core.database.db_helper import DataBaseHelper
 from core.database.models.base import Base
 from tests.core.settings import TestSettings
@@ -40,3 +41,9 @@ async def db_helper(settings: TestSettings) -> DataBaseHelper:
 async def db_session(db_helper: DataBaseHelper) -> AsyncSession:
     async with db_helper.session_factory() as session:
         yield session
+
+
+
+@pytest_asyncio.fixture()
+async def book_repository(db_session: AsyncSession) -> BookRepository:
+    return BookRepository(session=db_session)
