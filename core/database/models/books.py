@@ -18,3 +18,13 @@ class Book(Base, IntIdPkMixin):
     author: Mapped[str] = mapped_column(String(30))
     year: Mapped[int] = mapped_column(Integer)
     status: Mapped[BookStatus] = mapped_column(SQLEnum(BookStatus))
+
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "author": self.author,
+            "year": self.year,
+            "status": self.status.value,
+        }
