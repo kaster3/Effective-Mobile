@@ -1,5 +1,3 @@
-import sqlalchemy
-from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -43,10 +41,5 @@ class BookRepository:
         return book
 
     async def delete_book(self, book: Book) -> None:
-        try:
-            await self.session.delete(book)
-            await self.session.commit()
-        except sqlalchemy.exc.IntegrityError:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST, detail="Cannot delete category"
-            )
+        await self.session.delete(book)
+        await self.session.commit()

@@ -49,9 +49,9 @@ async def update_book(
     return updated_book
 
 
-@router.delete("/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{book_id_or_title}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_book_by_id(
-    book_id: int,
+    book: Annotated[Book, Depends(get_book_by_params)],
     service: Annotated[BookService, Depends(get_book_service)],
 ):
-    await service.delete_book_by_id(book_id=book_id)
+    await service.delete_book(book=book)

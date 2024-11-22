@@ -1,14 +1,13 @@
 import logging
 
-from fastapi import HTTPException
+import sqlalchemy
+from fastapi import HTTPException, status
 
 from api.api_v1.books.repository.books import BookRepository
 from api.api_v1.books.repository.cache_books import CacheRepository
 from api.api_v1.books.schemas import Book as BookSchema
 from api.api_v1.books.schemas import BookCreate, BookUpdatePartial
 from core.database.models import Book
-
-log = logging.getLogger(__name__)
 
 
 class BookService:
@@ -18,7 +17,6 @@ class BookService:
 
     async def get_books(self) -> list[BookSchema]:
         if cache_books := await self.cache.get_books():
-            log.debug("--------------------------------")
             return cache_books
         else:
             books = await self.repository.get_books()
@@ -42,6 +40,10 @@ class BookService:
         updated_book = await self.repository.update_book(book=book, book_in=book_in)
         return updated_book
 
-    async def delete_book_by_id(self, book_id: int) -> None:
-        book = await self.repository.get_by_id(book_id=book_id)
-        await self.repository.delete_book(book=book)
+    async def delete_book(self, book: Book) -> None:
+        try:
+            await self.repository.delete_book(book=book)
+        except sqlalchemy.exc.IntegrityError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="Can not delete book"
+            )
